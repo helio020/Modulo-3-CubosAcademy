@@ -1,0 +1,16 @@
+select count(medicamento) from farmacia;
+select min(idade) from usuarios;
+select max(idade) from usuarios;
+select avg(idade) from usuarios where idade >= 18;
+select categoria, sum(estoque) from farmacia where categoria in ('blue', 'black') group by categoria;
+select categoria, sum(estoque) from farmacia where categoria is not null group by categoria;
+select categoria, sum(estoque) from farmacia where categoria is null group by categoria;
+select count(medicamento) from farmacia where categoria is null;
+select concat(medicamento, '  ', '(', categoria, ')') as medicamento_categoria from farmacia where categoria is not null;
+select concat(id, '  -  ', medicamento, '  ', '(', coalesce(categoria, 'sem categoria'), ')') as id_medicamento_categoria from farmacia;
+select nome, idade, cast(cadastro as date) from usuarios where cadastro between '2020' and '2021';
+select nome, idade, email, age(cast(cadastro as timestamp)) as tempo from usuarios where idade < 18; 
+select nome, idade, email, age(cast(cadastro as date)) as tempo from usuarios where idade >= 60; 
+select categoria, count(medicamento) as "quantidade de produtos" from farmacia where categoria is not null group by categoria;
+select idade, count(idade) as "quantidade de registros" from usuarios where idade >= 18 group by idade;
+select categoria, sum(estoque) as "soma de estoque" from farmacia group by categoria limit 3;
